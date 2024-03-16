@@ -1,0 +1,16 @@
+%reload_ext autoreload
+%autoreload 2
+%matplotlib inline
+
+
+!pip install fastai
+from fastai.vision import *
+from pathlib import Path
+import numpy as np
+
+path = Path('dataset')
+np.random.seed(41)
+data = ImageDataBunch.from_folder(path, train="Train", valid ="Valid",
+        ds_tfms=get_transforms(), size=(256,256), bs=32, num_workers=4).normalize()
+
+
